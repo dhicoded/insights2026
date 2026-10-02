@@ -1,0 +1,689 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Elevate Your Knowledge | Insights by Minju Jacob</title>
+
+    <!-- MODERN, CLEAN FONT INTEGRATION -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- ====================================================== -->
+    <!-- 🎨 STYLES.CSS (INTERNAL CSS BLOCK) -->
+    <!-- ====================================================== -->
+    <style>
+        /* ---------------------------------- */
+        /* 0. GLOBAL RESETS & VARIABLES - FINAL PALETTE */
+        /* ---------------------------------- */
+        :root {
+            --color-navy: #0A2342; /* Primary Authority (Navy Blue) */
+            --color-teal: #1ABC9C; /* Secondary Contrast (Teal) */
+            --color-orange: #FF8C00; /* Accent/CTA (Vibrant Orange) */
+            --color-dark: #333333;
+            --color-light-bg: #F9F9F9;
+            --color-dark-bg: #25304A; /* Dark Section BG (Deep Navy Tone) */
+            --color-white: #FFFFFF;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            /* Smoother transitions for a premium feel */
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--color-dark);
+            background-color: var(--color-white);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .section-padding {
+            padding: 120px 0; /* Increased vertical padding for more whitespace */
+        }
+
+        .light-bg {
+            background-color: var(--color-light-bg);
+        }
+
+        .dark-bg {
+            background-color: var(--color-dark-bg);
+            color: #dcdfe3;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Typography Hierarchy */
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--color-navy);
+            line-height: 1.2;
+            margin-bottom: 1.5em;
+        }
+
+        h1 {
+            font-size: 4.5em; /* Slightly larger for impact */
+            color: var(--color-navy);
+        }
+        h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 50px; /* Increased spacing for clarity */
+        }
+        .section-title {
+            color: var(--color-navy);
+            text-align: center;
+        }
+
+
+        /* ---------------------------------- */
+        /* 1. NAVIGATION BAR (Sticky) */
+        /* ---------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(10, 35, 66, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--color-navy);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a {
+            margin: 0 15px;
+            font-weight: 500;
+            color: var(--color-navy);
+        }
+
+        .navbar .menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ---------------------------------- */
+        /* 2. HERO SECTION */
+        /* ---------------------------------- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Navy Gradient Overlay */
+            background: linear-gradient(rgba(10, 35, 66, 0.8), rgba(10, 35, 66, 0.8)),
+url('https://images.unsplash.com/photo-1522202177014-b4198c860fa3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90b3xlarHx8fHx8fHwxNzE1MDQ1NjQ4&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .subheading {
+            font-size: 1.6em;
+            margin: 20px auto 40px auto;
+            max-width: 750px;
+            opacity: 0.9;
+        }
+
+        /* ---------------------------------- */
+        /* CTA BUTTONS */
+        /* ---------------------------------- */
+        .cta-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed);
+        }
+
+        .primary {
+            background-color: var(--color-orange);
+            color: var(--color-dark);
+            border: 2px solid var(--color-orange);
+        }
+        .primary:hover {
+            background-color: #e57e00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+        }
+        .secondary {
+            background-color: transparent;
+            border: 2px solid var(--color-teal);
+            color: var(--color-teal);
+        }
+        .secondary:hover {
+            background-color: rgba(27, 26, 156, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* ---------------------------------- */
+        /* 3. ABOUT & VALUE GRID */
+        /* ---------------------------------- */
+        .mission-statement {
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            text-align: center;
+            font-size: 1.15em;
+            opacity: 0.85;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            padding: 40px; /* Increased padding for airiness */
+            text-align: center;
+            background-color: var(--color-white);
+            border-bottom: 4px solid var(--color-teal); /* Teal border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-card h3 {
+            font-size: 1.6em;
+            color: var(--color-navy);
+            margin-bottom: 10px;
+        }
+
+        /* ---------------------------------- */
+        /* 4. COURSES SECTION */
+        /* ---------------------------------- */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--color-dark-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-title {
+            color: var(--color-teal); /* Teal for course names */
+        }
+
+        .enroll-link {
+            margin-top: 20px;
+            font-weight: bold;
+            display: inline-block;
+            color: var(--color-orange);
+        }
+
+        /* ---------------------------------- */
+        /* 5. INSTRUCTOR SPOTLIGHT */
+        /* ---------------------------------- */
+        .instructor-grid {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .instructor-image {
+            flex: 1;
+            min-width: 350px;
+            height: 450px;
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .instructor-bio {
+            flex: 2;
+        }
+
+        .instructor-bio p {
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        /* ---------------------------------- */
+        /* 6. TESTIMONIALS (Carousel Structure) */
+        /* ---------------------------------- */
+        .testimonial-carousel {
+            display: flex;
+            overflow-x: scroll;
+            padding-bottom: 20px;
+            gap: 25px;
+            scroll-behavior: smooth;
+        }
+
+        .testimonial-card {
+            flex: 0 0 380px;
+            background: var(--color-white);
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform var(--transition-speed);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        .testimonial-card p:first-child {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .testimonial-card .name {
+            font-weight: 700;
+            color: var(--color-navy);
+            display: block;
+        }
+
+        /* ---------------------------------- */
+        /* 7. FINAL CTA / CONTACT BANNER */
+        /* ---------------------------------- */
+        .cta-banner {
+            background-color: var(--color-navy);
+            color: var(--color-white);
+            padding: 80px 0;
+        }
+
+        .cta-banner h2 {
+            color: var(--color-white);
+        }
+
+        .cta-banner p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: flex;
+            justify-content: center;
+            max-width: 650px;
+        }
+
+        .contact-form input[type="email"] {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .contact-form .cta-button.primary {
+            border-radius: 0 8px 8px 0;
+            padding: 15px 40px;
+            margin: 0;
+        }
+
+        /* ---------------------------------- */
+        /* 8. FOOTER */
+        /* ---------------------------------- */
+        footer {
+            background-color: var(--color-dark-bg);
+            color: #999;
+            padding: 40px 0;
+            font-size: 0.9em;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: #999;
+            margin-right: 25px;
+        }
+
+        /* ---------------------------------- */
+        /* 📱 RESPONSIVENESS (Mobile First Polish) */
+        /* ---------------------------------- */
+
+        @media (max-width: 1024px) {
+            .instructor-grid { flex-direction: column; text-align: center; gap: 40px; }
+            .instructor-image { min-width: 100%; height: 350px; }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation Toggle */
+            .navbar { padding: 15px 20px; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: var(--color-white);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                transition: opacity 0.3s;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .navbar .menu-icon {
+                display: block;
+            }
+
+            /* Content Adjustments */
+            .section-padding { padding: 60px 0; }
+            .hero-content h1 { font-size: 2.5em; }
+
+            /* Grid Adjustments */
+            .values-grid { grid-template-columns: 1fr; }
+            .course-grid { grid-template-columns: 1fr; }
+
+            /* Instructor Stacking */
+            .instructor-grid { flex-direction: column; text-align: center; }
+            .instructor-bio { padding-top: 20px; }
+
+            /* Footer Stacking */
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { margin-bottom: 15px; }
+
+            /* Form adjustments */
+            .contact-form { flex-direction: column; max-width: 90%; }
+            .contact-form input[type="email"] { border-radius: 8px 8px 0 0; margin-bottom: 10px; }
+            .contact-form .cta-button.primary { border-radius: 0 0 8px 8px; width: 100%; }
+        }
+    </style>
+</head>
+<body class="scroll-reveal">
+
+    <!-- 1. Navigation Bar -->
+    <header class="navbar" id="main-navbar">
+        <div class="logo">Insights</div>
+        <nav class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#courses">Programs</a>
+            <a href="#instructor">Instructor</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#contact" class="cta-button small">Enroll</a>
+        </nav>
+        <div class="menu-icon" id="menu-icon">☰</div >
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content scroll-reveal">
+            <h1 data-delay="0">Master the Future. Learn with Insights.</h1>
+            <p class="subheading" data-delay="100">High-impact education designed for the modern professional. Transform potential into proficiency.</p>
+            <a href="#courses" class="cta-button primary" data-delay="200">Explore Programs</a>
+            <a href="#contact" class="cta-button secondary" data-delay="300">Free Consultation</a>
+        </div >
+    </section>
+
+    <!-- 3. About/Mission Section -->
+    <section id="about" class="section-padding light-bg">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">The Insights Philosophy</h2>
+            <p class="mission-statement scroll-reveal">
+                We bridge the gap between academic theory and real-world industry application. Our curriculum is curated by experts who have successfully navigated the modern professional landscape,
+ensuring you learn actionable skills.
+            </p>
+
+            <div class="values-grid">
+                <div class="value-card scroll-reveal">
+                    <h3>📈 Clarity</h3>
+                    <p>Focused, digestible modules that cut through the noise.</p>
+                </div>
+                <div class="value-card scroll-reveal">
+                    <h3>🧠 Depth</h3>
+                    <p>Expert-led content and deep dives into complex subjects.</p>
+                </div>
+                <div class="value-card scroll-reveal">
+                    <h3>✨ Impact</h3>
+                    <p>Skills immediately applicable, accelerating your career trajectory.</p>
+                </div>
+            </div >
+        </div>
+    </section>
+
+    <!-- 4. Course Offerings Section -->
+    <section id="courses" class="section-padding dark-bg">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Our Curated Learning Paths</h2>
+            <div class="course-grid">
+                <div class="course-card scroll-reveal">
+                    <h3 class="course-title">Digital Marketing Strategy</h3>
+                    <p>Master SEO, SEM, and social media marketing to drive real business results.</p>
+                    <a href="#" class="enroll-link">View Details &rarr;</a>
+                </div>
+                <div class="course-card scroll-reveal">
+                    <h3 class="course-title">Advanced Data Analytics</h3>
+                    <p>Learn Python, R, and data visualization for complex data problem-solving.</p>
+                    <a href="#" class="enroll-link">View Details &rarr;</a>
+                </div>
+                <div class="course-card scroll-reveal">
+                    <h3 class="course-title">Leadership & Communication</h3>
+                    <p>Develop critical thinking, emotional intelligence, and leadership presence.</p>
+                    <a href="#" class="enroll-link">View Details &rarr;</a>
+                </div>
+            </div >
+            <div class="text-center mt-6">
+                <a href="#" class="cta-button primary">View All Programs</a>
+            </div >
+        </div >
+    </section>
+
+    <!-- 5. Instructor Spotlight -->
+    <section id="instructor" class="section-padding instructor-section scroll-reveal">
+        <div class="container instructor-grid">
+            <div class="instructor-image">
+                <!-- Placeholder for professional photo. -->
+            </div>
+            <div class="instructor-bio">
+                <h2 class="section-title">Insights by Minju Jacob</h2>
+                <p class="tagline">Transforming education into tangible professional opportunity.</p>
+                <p>Minju Jacob brings a decade of experience in high-level tech consulting and corporate strategy. Her educational approach is rooted in practical application, ensuring that every lesson is
+not merely theoretical, but actionable and relevant to today's demanding market.</p>
+                <a href="#" class="cta-button secondary mt-3">Read Full Bio</a>
+            </div >
+        </div >
+    </section>
+
+    <!-- 6. Testimonials -->
+    <section id="testimonials" class="section-padding light-bg">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Success Stories</h2>
+            <div class="testimonial-carousel" id="testimonial-carousel">
+                <div class="testimonial-card scroll-reveal">
+                    <p>"Insights fundamentally changed my career trajectory. The Data Analytics course was a game-changer for my promotion."</p>
+                    <p class="name">— Sarah L., Senior Analyst</p>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <p>"High quality, clear instruction. Minju Jacob's passion for industry relevance is truly infectious."</p>
+                    <p class="name">— David P., Marketing Director</p>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <p>"The leadership modules were perfect. Highly practical and immediately applicable to my team."</p>
+                    <p class="name">— Chen W., Team Lead</p>
+                </div>
+            </div >
+        </div >
+    </section>
+
+    <!-- 7. Final CTA / Contact Form -->
+    <section id="contact" class="cta-banner scroll-reveal">
+        <div class="container text-center">
+            <h2 class="section-title">Ready to Invest in Yourself?</h2>
+            <p>Start your journey toward mastery today. (Note: Form submission is client-side only per constraints.)</p>
+            <form class="contact-form" id="contact-form">
+                <input type="email" id="email-input" placeholder="Enter your professional email address" required>
+                <button type="submit" class="cta-button primary">Start Free Trial</button>
+            </form>
+        </div >
+    </section>
+
+    <!-- 8. Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Careers</a>
+            </div >
+            <p>&copy; 2024 Insights. All Rights Reserved. Insights by Minju Jacob.</p>
+        </div >
+    </footer>
+
+    <!-- ====================================================== -->
+    <!-- 💡 SCRIPT.JS (INTERNAL JAVASCRIPT BLOCK) -->
+    <!-- ====================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ---------------------------------------------------
+            // 1. Mobile Menu Toggle Functionality
+            // ---------------------------------------------------
+            const menuIcon = document.getElementById('menu-icon');
+            const navLinks = document.getElementById('nav-links');
+
+            if (menuIcon && navLinks) {
+                menuIcon.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // ---------------------------------------------------
+            // 2. Sticky Navigation Bar Logic
+            // ---------------------------------------------------
+            const navbar = document.getElementById('main-navbar');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ---------------------------------------------------
+            // 3. Scroll Reveal Animation (IntersectionObserver)
+            // ---------------------------------------------------
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal, .value-card').forEach(el => {
+                observer.observe(el);
+            });
+
+            // ---------------------------------------------------
+            // 4. Testimonial Carousel Logic
+            // ---------------------------------------------------
+            const carousel = document.getElementById('testimonial-carousel');
+            if (carousel) {
+                const cardWidth = 380;
+                let currentIndex = 0;
+                const totalCards = carousel.children.length;
+
+                const nextTestimonial = () => {
+                    currentIndex = (currentIndex + 1) % totalCards;
+                    carousel.scrollTo({
+                        left: currentIndex * cardWidth,
+                        behavior: 'smooth'
+                    });
+                };
+
+                // Auto-advance every 5 seconds
+                setInterval(nextTestimonial, 5000);
+            }
+
+            // ---------------------------------------------------
+            // 5. Form Submission Handler (Client-Side Validation)
+            // ---------------------------------------------------
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const emailInput = document.getElementById('email-input').value;
+
+                    if (emailInput && emailInput.includes('@')) {
+                        alert(`🚀 Success! We received your inquiry for ${emailInput}. An Insights advisor will contact you shortly.`);
+                        contactForm.reset();
+                    } else {
+                        alert("⚠️ Please enter a valid email address to proceed.");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
